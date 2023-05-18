@@ -24,7 +24,7 @@ class notificationController extends Controller
      $message=$message_info['message'];
 
         $chat_id=Message::where("sender_id",$from_id)->where('receiver_id',$to_id)->select('chat_id');
-        if(! Message::where(function ($query) use ($to_id,$from_id){
+        if( Message::where(function ($query) use ($to_id,$from_id){
           $query->where('sender_id',$to_id)->where('receiver_id',$from_id);
         } )
             ->orWhere(function ($query) use ($from_id,$to_id){
